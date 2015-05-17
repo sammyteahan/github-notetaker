@@ -33,6 +33,8 @@
   //
   // $ curl 'http://localhost:8081/index.ios.bundle?dev=false&minify=true' -o iOS/main.jsbundle
   //
+  // NOTE: 'react-native bundle' does NOT work, minify and bundle via curl above
+  //
   // and uncomment the next following line
   // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
