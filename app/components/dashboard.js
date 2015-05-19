@@ -1,4 +1,7 @@
 var React = require('react-native');
+var Profile = require('./profile');
+var Repositories = require('./repositories');
+var api = require('../utils/api');
 
 var {
   Text,
@@ -14,7 +17,7 @@ var style = StyleSheet.create({
     flex: 1
   },
   image: {
-    height: 350,
+    height: 300,
   },
   buttonText: {
     fontSize: 24,
@@ -47,11 +50,24 @@ class Dashboard extends React.Component {
   }
 
   goToProfile() {
-    console.log('going to profile');
+    this.props.navigator.push({
+      component: Profile,
+      title: 'Profile Page',
+      passProps: {userInfo: this.props.userInfo}
+    });
   }
   goToRepos() {
-    console.log('going to repos');
-
+    api.getRepos(this.props.userInfo.login)
+      .then((response) => {
+        this.props.navigator.push({
+          component: Repositories,
+          title: 'Repositories',
+          passProps: {
+            userInfo: this.props.userInfo, 
+            repos: response
+          }
+        });
+      });
   }
   goToNotes() {
     console.log('going to notes');
