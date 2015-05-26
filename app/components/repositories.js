@@ -1,6 +1,7 @@
 var React = require('react-native');
 var Badge = require('./badge');
 var Seperator = require('../helpers/seperator');
+var Web = require('../helpers/web');
 
 var {
   ScrollView,
@@ -36,23 +37,27 @@ var styles = StyleSheet.create({
 });
 
 class Repositories extends React.Component{
-  openPage(url){
-    console.log('the url is', url);
-    }
+  openPage(url) {
+    this.props.navigator.push({
+      component: Web,
+      title: 'Web View',
+      passProps: {url}
+    });
+  }
   render(){
     var repos = this.props.repos;
     var list = repos.map((item, index) => {
       var desc = repos[index].description ? <Text style={styles.description}> {repos[index].description} </Text> : <View />;
       return (
-        <View key={index}>
-          <View style={styles.rowContainer}>
+        <View key={ index }>
+          <View style={ styles.rowContainer }>
             <TouchableHighlight
-              onPress={this.openPage.bind(this, repos[index].html_url)}
+              onPress={ this.openPage.bind(this, repos[index].html_url) }
               underlayColor='transparent'>
-              <Text style={styles.name}>{repos[index].name}</Text>
+              <Text style={ styles.name }>{ repos[index].name }</Text>
             </TouchableHighlight>
-            <Text style={styles.stars}> Stars: {repos[index].stargazers_count} </Text>
-            {desc}
+            <Text style={ styles.stars }> Stars: {repos[index].stargazers_count} </Text>
+            { desc }
           </View>
           <Seperator />
         </View>
