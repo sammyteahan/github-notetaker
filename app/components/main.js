@@ -47,7 +47,7 @@ var style = StyleSheet.create({
     color: '#111',
     alignSelf: 'center'
   },
-  button: {
+  btn: {
     height: 45,
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -82,29 +82,28 @@ class Main extends React.Component {
     this.setState({
       isLoading: true
     });
-    api.getBio(this.state.username)
-      .then((response) => { // es6 shorthand for typical function(response) {...}
-        if(response.message === 'Not Found') {
-          this.setState({
-            error: 'User not found',
-            isLoading: false
-          })
-        }
-        else {
-          // push a new component onto navigator and pass info
-          this.props.navigator.push({
-            title: response.name || 'Select an option',
-            component: Dashboard,
-            passProps: {userInfo: response}
-          });
-          // reset the state if we hit 'back' button:
-          this.setState({
-            isLoading: false,
-            error: false,
-            username: ''
-          })
-        }
-      });
+    api.getBio(this.state.username).then((response) => { // es6 shorthand for typical function(response) {...}
+      if(response.message === 'Not Found') {
+        this.setState({
+          error: 'User not found',
+          isLoading: false
+        })
+      }
+      else {
+        // push a new component onto navigator and pass info
+        this.props.navigator.push({
+          title: response.name || 'Select an option',
+          component: Dashboard,
+          passProps: {userInfo: response}
+        });
+        // reset the state if we hit 'back' button:
+        this.setState({
+          isLoading: false,
+          error: false,
+          username: ''
+        })
+      }
+    });
   }
   render() {
     var showError = (
@@ -118,7 +117,7 @@ class Main extends React.Component {
           value={ this.state.username } 
           onChange={ this.handleChange.bind(this) } />
         <TouchableHighlight 
-          style={ style.button } 
+          style={ style.btn } 
           onPress={ this.handleSubmit.bind(this) } 
           underlayColor='white'>
             <Text style={ style.buttonText }>Search</Text>

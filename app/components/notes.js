@@ -113,7 +113,7 @@ class Notes extends React.Component{
             dataSource={this.state.dataSource}
             renderRow={this.renderRow}
             renderHeader={() => <Badge userInfo={this.props.userInfo}/>} />
-        {this.footer()}
+        { this.footer() }
       </View>
     )
   }

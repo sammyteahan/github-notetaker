@@ -41,7 +41,7 @@ class Repositories extends React.Component{
     this.props.navigator.push({
       component: Web,
       title: 'Web View',
-      passProps: {url}
+      passProps: { url }
     });
   }
   render(){

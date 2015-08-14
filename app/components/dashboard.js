@@ -18,7 +18,7 @@ var style = StyleSheet.create({
     flex: 1
   },
   image: {
-    height: 300,
+    height: 350,
   },
   buttonText: {
     fontSize: 24,
@@ -31,14 +31,12 @@ class Dashboard extends React.Component {
   
   // Function to dynamically apply background color
   makeBackground(btn) {
-
     var styleObj = {
       flexDirection: 'row',
       alignSelf: 'stretch',
       justifyContent: 'center',
       flex: 1
     }
-
     if(btn === 0) {
       styleObj.backgroundColor = '#48BBEC';
     } else if(btn === 1) {
@@ -46,7 +44,6 @@ class Dashboard extends React.Component {
     } else if(btn === 2) {
       styleObj.backgroundColor = '#758BF4';
     }
-
     return styleObj;
   }
 
